@@ -41,7 +41,7 @@ library {{name}} {
   }
 
 {{/states}}
-  function matches(string input) public pure returns (bool) {
+  function matches(string memory input) public pure returns (bool) {
     State memory cur = State({{startAccepts}}, s1);
 
     for (uint i = 0; i < bytes(input).length; i++) {
