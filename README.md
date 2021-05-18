@@ -13,7 +13,7 @@ Installing
 ----------
 
 ```
-npm install -g solregex
+npm install -g solregex2
 ```
 
 Usage
@@ -22,7 +22,7 @@ Usage
 Provide optional `--name` parameter and regex as argument.
 
 ```
-$ solregex --name EmailRegex '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-_]+\.[a-zA-Z]{2,}'
+$ solregex2 --name EmailRegex '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-_]+\.[a-zA-Z]{2,}'
 ```
 
 `solregex` prints the contents of a standalone Solidity source file (`.sol`)
@@ -50,7 +50,7 @@ Generally the process follows these steps:
 
 ### Graphviz Output
 
-`solregex` supports generating Graphviz DOT output for a given regular
+`solregex2` supports generating Graphviz DOT output for a given regular
 expression's DFA (deterministic finite automaton).
 
 To generate DOT output instead of Solidity, pass the `--dot` parameter.
