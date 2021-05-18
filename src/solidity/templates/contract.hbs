@@ -1,13 +1,13 @@
 {{#*inline "transitionExpr"~}}
   {{#join matchIntervals " || "~}}
     {{#if equal~}}
-  c == {{low}}
+  _cint == {{low}}
     {{~else~}}
-  c >= {{low}} && c <= {{high}}
+  _cint >= {{low}} && _cint <= {{high}}
     {{~/if}}
   {{~/join}}
 {{~/inline}}
-pragma solidity ^0.4.23;
+pragma solidity ^0.7.6;
 
 library {{name}} {
   struct State {
@@ -27,6 +27,7 @@ library {{name}} {
 {{#states}}
   function s{{id}}(byte c) pure internal returns (State memory) {
 {{#outputs}}
+    uint8 _cint = uint8(c);
     if ({{> transitionExpr }}) {
       return State({{accepts}}, s{{to}});
     }
