@@ -12,30 +12,32 @@ pragma solidity ^0.8.0;
 library {{name}} {
   struct State {
     bool accepts;
-    function (byte1) pure internal returns (State memory) func;
+    function (bytes1) pure internal returns (State memory) func;
   }
 
 {{#if regex}}
   string public constant regex = "{{{regex}}}";
 
 {{/if}}
-  function s0(byte1 c) pure internal returns (State memory) {
+  function s0(bytes1 c) pure internal returns (State memory) {
     c = c;
     return State(false, s0);
   }
 
 {{#states}}
-  function s{{id}}(byte1 c) pure internal returns (State memory) {
-{{#outputs}}
-    uint8 _cint = uint8(c);
-    if ({{> transitionExpr }}) {
-      return State({{accepts}}, s{{to}});
-    }
-{{/outputs}}
-{{^outputs}}
-    // silence unused var warning
-    c = c;
-{{/outputs}}
+  function s{{id}}(bytes1 c) pure internal returns (State memory) {
+
+     uint8 _cint = uint8(c);
+     
+    {{#outputs}}
+        if ({{> transitionExpr }}) {
+          return State({{accepts}}, s{{to}});
+        }
+    {{/outputs}}
+    {{^outputs}}
+        // silence unused var warning
+        c = c;
+    {{/outputs}}
 
     return State(false, s0);
   }
@@ -45,7 +47,7 @@ library {{name}} {
     State memory cur = State({{startAccepts}}, s1);
 
     for (uint i = 0; i < bytes(input).length; i++) {
-      byte1 c = bytes(input)[i];
+      bytes1 c = bytes(input)[i];
 
       cur = cur.func(c);
     }
