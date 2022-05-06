@@ -7,6 +7,8 @@
     {{~/if}}
   {{~/join}}
 {{~/inline}}
+
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 library {{name}} {
@@ -28,7 +30,7 @@ library {{name}} {
   function s{{id}}(bytes1 c) pure internal returns (State memory) {
 
      uint8 _cint = uint8(c);
-     
+
     {{#outputs}}
         if ({{> transitionExpr }}) {
           return State({{accepts}}, s{{to}});

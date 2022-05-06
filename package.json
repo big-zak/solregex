@@ -18,7 +18,7 @@
     "compile": "webpack",
     "prepublish": "webpack -p",
     "clean": "rm -rf ./dist",
-    "solregex2": "sh dist/main.bundle.js"
+    "solregex2": "node dist/main.bundle.js"
   },
   "keywords": [
     "solidity",
